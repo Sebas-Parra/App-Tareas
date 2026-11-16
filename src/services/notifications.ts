@@ -29,13 +29,19 @@ export function configureNotificationHandler() {
 /** Android exige un canal antes de mostrar notificaciones. */
 export async function ensureNotificationChannel() {
   if (Platform.OS !== 'android') return;
-  await Notifications.setNotificationChannelAsync(REMINDER_CHANNEL_ID, {
-    name: 'Recordatorios de tareas',
-    importance: AndroidImportance.HIGH,
-    vibrationPattern: [0, 250, 250, 250],
-    lightColor: '#4F46E5',
-    sound: 'default',
-  });
+  try {
+    // Sin `sound`: Android usa el sonido por defecto. En el canal, `sound` es el nombre
+    // de un archivo propio; con 'default' busca un recurso que no existe y falla.
+    await Notifications.setNotificationChannelAsync(REMINDER_CHANNEL_ID, {
+      name: 'Recordatorios de tareas',
+      importance: AndroidImportance.HIGH,
+      vibrationPattern: [0, 250, 250, 250],
+      lightColor: '#4F46E5',
+    });
+  } catch (error) {
+    // Si el canal falla, no se debe bloquear el resto del arranque (permisos, avisos).
+    console.warn('No se pudo crear el canal de notificaciones', error);
+  }
 }
 
 export async function getPermissionStatus(): Promise<Notifications.PermissionStatus> {

@@ -208,7 +208,8 @@ Luego escanea el QR con Expo Go (Android) o la cámara (iOS).
 
 | Comando | Qué hace |
 |---|---|
-| `npm start` | Servidor de desarrollo |
+| `npm start` | Servidor de desarrollo (para un development build) |
+| `npm run start:go` | Servidor de desarrollo para probar con Expo Go |
 | `npm test` | Tests unitarios (Jest) |
 | `npm run typecheck` | Verificación de tipos |
 | `npm run lint` | ESLint |
