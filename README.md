@@ -215,7 +215,7 @@ Luego escanea el QR con Expo Go (Android) o la cámara (iOS).
 | `npm run lint` | ESLint |
 | `npm run db:generate` | Genera una migración tras cambiar `src/db/schema.ts` |
 
-> Antes de publicar, cambia `com.tuusuario.taskalert` en `app.json` por tu propio identificador.
+> El identificador de la app (`com.sebasparra.taskalert`) está en `app.json`. No lo cambies una vez publicada: Android la trataría como otra app.
 
 ### Dependencias principales
 
@@ -248,11 +248,11 @@ npm install -D drizzle-kit babel-plugin-inline-import jest-expo jest @testing-li
       ]
     ],
     "android": {
-      "package": "com.tuusuario.taskalert",
+      "package": "com.sebasparra.taskalert",
       "permissions": ["POST_NOTIFICATIONS", "SCHEDULE_EXACT_ALARM"]
     },
     "ios": {
-      "bundleIdentifier": "com.tuusuario.taskalert"
+      "bundleIdentifier": "com.sebasparra.taskalert"
     }
   }
 }
